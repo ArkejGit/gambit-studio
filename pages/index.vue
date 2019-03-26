@@ -1,68 +1,76 @@
 <template>
-	<section class="container">
-		<div>
-			<logo />
-			<h1 class="title">
-				gambit
-			</h1>
-			<h2 class="subtitle">
-				Gambit Studio website
-			</h2>
-			<div class="links">
-				<a
-					href="https://nuxtjs.org/"
-					target="_blank"
-					class="button--green"
-				>Documentation</a>
-				<a
-					href="https://github.com/nuxt/nuxt.js"
-					target="_blank"
-					class="button--grey"
-				>GitHub</a>
+	<div>
+		<section class="hello-banner">
+			<HelloBanner />
+		</section>
+
+		<section class="offer-section">
+			<br>
+			<Heading>
+				W czym możemy pomóc?
+			</Heading>
+			<Offers />
+		</section>
+
+		<Slogan button-text="Sprawdź nas" bgImage="/dont-be-pawn.jpg">
+			<p>Nie bądź pionkiem w swojej branży</p>
+			<p>Pomożemy Ci stać się liderem</p>
+		</Slogan>
+
+		<section class="realizations-section">
+			<Heading>
+				Realizacje
+			</Heading>
+			<Realizations />
+		</section>
+
+		<Slogan button-text="Czytaj bloga" bgImage="/see-blog.jpg">
+			<p>Zobacz co słychać</p>
+			<p>na naszym blogu</p>
+		</Slogan>
+
+		<section class="contact-section">
+			<div class="container py-5">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consectetur dolorem reiciendis magnam itaque non eveniet neque, modi natus? Quibusdam nemo tempora neque eum delectus molestiae vitae aliquid quam pariatur quae magni obcaecati consequuntur, itaque, cumque accusantium cum. Distinctio aspernatur, sequi, illum accusamus iste dolor dolorum soluta est eum cumque nemo repudiandae non optio eos voluptatibus neque, ratione aut asperiores, inventore. Tempora voluptatum facere officia quidem, voluptas cum fugit nisi pariatur! Quo quasi, ipsum nobis magnam ipsa, eaque voluptas at, provident corporis tenetur fugiat adipisci nemo sequi? Voluptatem minima dolores molestiae et sed, libero quia sequi commodi pariatur tempore est.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consectetur dolorem reiciendis magnam itaque non eveniet neque, modi natus? Quibusdam nemo tempora neque eum delectus molestiae vitae aliquid quam pariatur quae magni obcaecati consequuntur, itaque, cumque accusantium cum. Distinctio aspernatur, sequi, illum accusamus iste dolor dolorum soluta est eum cumque nemo repudiandae non optio eos voluptatibus neque, ratione aut asperiores, inventore. Tempora voluptatum facere officia quidem, voluptas cum fugit nisi pariatur! Quo quasi, ipsum nobis magnam ipsa, eaque voluptas at, provident corporis tenetur fugiat adipisci nemo sequi? Voluptatem minima dolores molestiae et sed, libero quia sequi commodi pariatur tempore est.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consectetur dolorem reiciendis magnam itaque non eveniet neque, modi natus? Quibusdam nemo tempora neque eum delectus molestiae vitae aliquid quam pariatur quae magni obcaecati consequuntur, itaque, cumque accusantium cum. Distinctio aspernatur, sequi, illum accusamus iste dolor dolorum soluta est eum cumque nemo repudiandae non optio eos voluptatibus neque, ratione aut asperiores, inventore. Tempora voluptatum facere officia quidem, voluptas cum fugit nisi pariatur! Quo quasi, ipsum nobis magnam ipsa, eaque voluptas at, provident corporis tenetur fugiat adipisci nemo sequi? Voluptatem minima dolores molestiae et sed, libero quia sequi commodi pariatur tempore est.</p>
 			</div>
-		</div>
-	</section>
+		</section>
+	</div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import HelloBanner from '~/components/HelloBanner.vue'
+import Slogan from '~/components/Slogan.vue'
+import Offers from '~/components/Offers.vue'
+import Heading from '~/components/Heading.vue'
+import Realizations from '~/components/Realizations.vue'
 
 export default {
 	components: {
-		Logo
-	}
+		HelloBanner,
+		Slogan,
+		Offers,
+		Heading,
+		Realizations
+	},
+	layout: 'home'
 }
 </script>
 
-<style>
-.container {
-	margin: 0 auto;
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-}
+<style lang="sass">
+.hello-banner
+	height: 100vh
+	min-height: 400px
+	max-height: 800px
+	position: relative
+.offer-section
+	background-image: linear-gradient(to top, #f8f8f8 60%, $white)
+.contact-section
+	background-color: $grey
 
-.title {
-	font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-		'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-	display: block;
-	font-weight: 300;
-	font-size: 100px;
-	color: #35495e;
-	letter-spacing: 1px;
-}
-
-.subtitle {
-	font-weight: 300;
-	font-size: 42px;
-	color: #526488;
-	word-spacing: 5px;
-	padding-bottom: 15px;
-}
-
-.links {
-	padding-top: 15px;
-}
+@media only screen and (max-width: 768px)
+	.offer-section
+		background-color: $grey
+		background-image: none
 </style>

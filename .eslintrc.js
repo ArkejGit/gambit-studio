@@ -9,12 +9,18 @@ module.exports = {
   },
   extends: [
     '@nuxtjs',
-    'plugin:nuxt/recommended',
-    'plugin:prettier/recommended'
+    'plugin:nuxt/recommended'
   ],
   plugins: [
-    'prettier'
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    "vue/html-indent": "off",
+    "allowIndentationTabs": true,
+    "no-tabs": 0,
+    "indent": ["error", "tab"],
+    "vue/attribute-hyphenation": "off",
+    "vue/html-self-closing": "off",
+    "vue/require-default-prop": "off"
+  }
 }
