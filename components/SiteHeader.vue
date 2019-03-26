@@ -40,6 +40,7 @@ export default {
 		left: 0
 		opacity: .8
 
-// @media only screen and (max-width: 767px)
-
+@media only screen and (max-width: 767px)
+	.site-header
+		height: 40vh
 </style>

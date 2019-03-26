@@ -1,7 +1,7 @@
 <template>
 	<section class="offers py-5">
 		<div class="container">
-			<div class="row">
+			<div class="row d-flex align-items-center justify-content-center">
 				<div v-for="offer in offers" class="offer-container col-12 col-md-6 col-lg-4" data-aos="zoom-in">
 					<div class="offer text-center d-flex flex-column justify-content-around align-items-center">
 						<img :src="offer.img" class="offer-image" alt="">
@@ -110,7 +110,10 @@ export default {
 		display: flex
 		justify-content: center
 		align-items: center
-	.offer
 		width: 80vw
 		height: 80vw
+		max-width: 80vh
+		max-height: 80vh
+	.offer
+		width: 100%
 </style>

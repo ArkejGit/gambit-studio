@@ -11,7 +11,7 @@
 h1
 	text-transform: uppercase
 	font-weight: 700
-	margin-top: 1em
+	margin-top: 2em
 .underline
 	width: 150px
 	height: 3px

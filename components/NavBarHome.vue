@@ -121,7 +121,7 @@ export default {
 			a
 				border: 0
 				color: $white
-				font-size: 8vw
+				font-size: 7vw
 	.navbar-toggler
 		z-index: 12
 		outline: none

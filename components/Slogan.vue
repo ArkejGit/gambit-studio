@@ -1,6 +1,6 @@
 <template>
 	<section :style="{ backgroundImage: `url('${bgImage}')` }" class="slogan py-3">
-		<div class="container slogan-container d-flex flex-row justify-content-between">
+		<div class="container slogan-container d-flex justify-content-between">
 			<div class="d-flex flex-column justify-content-center">
 				<div data-aos="fade-right">
 					<slot></slot>
@@ -27,7 +27,6 @@ export default {
 
 <style lang="sass" scoped>
 .slogan
-	// background-image: url('/dont-be-pawn.jpg')
 	background-repeat: no-repeat
 	background-size: cover
 	background-position: center
@@ -35,6 +34,7 @@ export default {
 	height: 200px
 	.slogan-container
 		height: 100%
+		flex-direction: row
 		> div
 			z-index: 1
 	.slogan-overlay
@@ -71,8 +71,13 @@ export default {
 		height: 150px
 		.container
 			max-width: 100%
+			flex-direction: column
+			> div
+				text-align: center
+				align-items: center
 		p
 			font-size: 3.8vw
 		.slogan-button
 			font-size: 2.8vw
+			width: 50%
 </style>

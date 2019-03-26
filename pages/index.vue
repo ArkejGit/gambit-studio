@@ -5,7 +5,6 @@
 		</section>
 
 		<section class="offer-section">
-			<br>
 			<Heading>
 				W czym możemy pomóc?
 			</Heading>
