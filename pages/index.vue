@@ -11,7 +11,7 @@
 			<Offers />
 		</section>
 
-		<Slogan button-text="Sprawdź nas" bgImage="/dont-be-pawn.jpg">
+		<Slogan button-text="Sprawdź nas" bgImage="/dont-be-pawn.jpg" link="/kontakt">
 			<p>Nie bądź pionkiem w swojej branży</p>
 			<p>Pomożemy Ci stać się liderem</p>
 		</Slogan>
@@ -23,7 +23,7 @@
 			<Realizations />
 		</section>
 
-		<Slogan button-text="Czytaj bloga" bgImage="/see-blog.jpg">
+		<Slogan button-text="Czytaj bloga" bgImage="/see-blog.jpg" link="/blog">
 			<p>Zobacz co słychać</p>
 			<p>na naszym blogu</p>
 		</Slogan>

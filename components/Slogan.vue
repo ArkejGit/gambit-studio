@@ -7,9 +7,9 @@
 				</div>
 			</div>
 			<div class="d-flex flex-column justify-content-center">
-				<a href="#" class="slogan-button" data-aos="fade-left">
+				<router-link :to="link" class="slogan-button" data-aos="fade-left">
 					{{ buttonText }}
-				</a>
+				</router-link>
 			</div>
 		</div>
 		<div class="slogan-overlay"></div>
@@ -20,7 +20,8 @@
 export default {
 	props: {
 		buttonText: String,
-		bgImage: String
+		bgImage: String,
+		link: String
 	}
 }
 </script>
