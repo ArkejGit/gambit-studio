@@ -23,7 +23,7 @@
 					</nuxt-link>
 				</b-navbar-nav>
 			</b-collapse>
-					<a href="https://www.facebook.com/GambitStudio/" target="_blank" rel="noopener noreferrer" class="d-none d-md-block" alt="facebook"><img class="facebook" src="/static/facebook.svg" height="25" alt="facebook"></a>
+					<a href="https://www.facebook.com/GambitStudio/" target="_blank" rel="noopener noreferrer" class="d-none d-md-block facebook" alt="facebook"><font-awesome-icon :icon="['fab', 'facebook']" /></a>
 		</b-navbar>
 	</div>
 </template>
@@ -104,6 +104,16 @@ export default {
 		border: 3px solid red
 		background-image: 'url(/menu-white.svg)'
 
+.facebook
+	color: $white
+	opacity: .8
+	transition: all .3s ease
+	&:hover
+		opacity: 1
+	svg
+		height: 1.5em
+		width: 1.5em
+
 @media only screen and (max-width: 767px)
 	#nav_collapse
 		background-image: linear-gradient(45deg, #0693F4, $blue, #0693F4)
@@ -121,10 +131,12 @@ export default {
 			a
 				border: 0
 				color: $white
-				font-size: 8vw
+				font-size: 7vw
 	.navbar-toggler
 		z-index: 12
 		outline: none
 		.navbar-toggler-icon
 			border: 2px solid red
+	.facebook
+		display: none
 </style>

@@ -3,7 +3,9 @@
 		<div class="container py-5">
 			<div class="row">
 				<div class="col-12 col-md-4 py-3 py-md-0">
-					<img class="footer-logo" src="~/assets/gambit-logo-white.svg" alt="">
+					<nuxt-link to="#" class="footer-logo">
+						<img src="~/assets/gambit-logo-white.svg" alt="">
+					</nuxt-link>
 				</div>
 				<div class="col-12 col-md-4 py-3 py-md-0">
 					<h3>Menu</h3>
@@ -59,6 +61,10 @@
 	.footer-logo
 		width: 70%
 		min-width: 200px
+		opacity: 1
+		transition: all .3s ease
+		&:hover
+			opacity: .9
 // @media only screen and (max-width: 767px)
 
 </style>

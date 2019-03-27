@@ -7,6 +7,12 @@
 	</div>
 </template>
 
+<script>
+export default {
+	name: 'Heading'
+}
+</script>
+
 <style lang="sass" scoped>
 h1
 	text-transform: uppercase

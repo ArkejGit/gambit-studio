@@ -22,7 +22,7 @@ export default {
 	background-size: cover
 	background-position: center
 	position: relative
-	height: 60vh
+	height: 50vh
 	max-height: 400px
 	padding-top: 71px
 	h1
@@ -31,6 +31,7 @@ export default {
 		font-size: 50px
 		font-weight: 600
 		z-index: 1
+		text-align: center
 	.site-header-overlay
 		background-image: linear-gradient(45deg, #0693F4, $blue, #0693F4)
 		position: absolute

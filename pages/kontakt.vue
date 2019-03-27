@@ -1,20 +1,33 @@
 <template>
 	<div>
 		<SiteHeader title="Kontakt" bgImage="/contact-bg.jpg" />
-		<div class="container py-5">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repellat tempore placeat magni beatae. Facere rem at minima accusamus inventore consequatur, nam aut quisquam totam eaque aliquid tenetur voluptas, aliquam quidem corporis dignissimos officia quaerat esse. Error accusamus rem reiciendis dolorum sint eum at nobis recusandae, consequuntur fugit! Consectetur qui reprehenderit placeat? Magnam eveniet sint necessitatibus similique iusto consequuntur dolorum, autem, recusandae perspiciatis tempore quod sunt dolorem nostrum excepturi itaque accusamus provident amet ut dolor odio rem nobis voluptatum illum! Voluptatem blanditiis illo ea laboriosam dolor, nulla soluta modi officia quaerat sequi. Labore quia officia, error id eligendi tempora recusandae!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repellat tempore placeat magni beatae. Facere rem at minima accusamus inventore consequatur, nam aut quisquam totam eaque aliquid tenetur voluptas, aliquam quidem corporis dignissimos officia quaerat esse. Error accusamus rem reiciendis dolorum sint eum at nobis recusandae, consequuntur fugit! Consectetur qui reprehenderit placeat? Magnam eveniet sint necessitatibus similique iusto consequuntur dolorum, autem, recusandae perspiciatis tempore quod sunt dolorem nostrum excepturi itaque accusamus provident amet ut dolor odio rem nobis voluptatum illum! Voluptatem blanditiis illo ea laboriosam dolor, nulla soluta modi officia quaerat sequi. Labore quia officia, error id eligendi tempora recusandae!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repellat tempore placeat magni beatae. Facere rem at minima accusamus inventore consequatur, nam aut quisquam totam eaque aliquid tenetur voluptas, aliquam quidem corporis dignissimos officia quaerat esse. Error accusamus rem reiciendis dolorum sint eum at nobis recusandae, consequuntur fugit! Consectetur qui reprehenderit placeat? Magnam eveniet sint necessitatibus similique iusto consequuntur dolorum, autem, recusandae perspiciatis tempore quod sunt dolorem nostrum excepturi itaque accusamus provident amet ut dolor odio rem nobis voluptatum illum! Voluptatem blanditiis illo ea laboriosam dolor, nulla soluta modi officia quaerat sequi. Labore quia officia, error id eligendi tempora recusandae!</p>
+		<div class="text-center">
+			<ContactForm />
 		</div>
 	</div>
 </template>
 
 <script>
 import SiteHeader from '~/components/SiteHeader.vue'
+import ContactForm from '~/components/ContactForm.vue'
 
 export default {
 	components: {
-		SiteHeader
+		SiteHeader,
+		ContactForm
+	},
+	head() {
+		return {
+			title: 'Gambit Studio - Kontakt'
+		}
 	}
 }
 </script>
+
+<style lang="sass" scoped>
+h2
+	text-transform: uppercase
+	font-weight: 600
+	font-size: 1.2em
+	margin: 2em 0
+</style>

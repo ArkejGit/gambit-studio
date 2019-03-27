@@ -56,7 +56,6 @@ export default {
 		text-transform: uppercase
 		border: 2px solid $white
 		border-radius: 2em
-		text-transform: uppercase
 		font-size: 20px
 		font-weight: 600
 		color: $white

@@ -4,64 +4,69 @@ module.exports = {
 	mode: 'universal',
 
 	/*
-  ** Headers of the page
-  */
+	** Headers of the page
+	*/
 	head: {
-		title: pkg.name,
+		title: 'Gambit Studio',
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-			{ hid: 'description', name: 'description', content: pkg.description }
+			{ hid: 'description', name: 'description', content: 'Tworzymy strony internetowe, sklepy, aplikacje. Opracowujemy strategię i kreujemy Twoją markę. Poznaj GambIT' }
 		],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }]
 	},
 
 	/*
-  ** Customize the progress-bar color
-  */
+	** Customize the progress-bar color
+	*/
 	loading: { color: '#fff' },
 
 	/*
-  ** Global CSS
-  */
+	** Global CSS
+	*/
 	css: ['@assets/css/main.sass'],
 
 	/*
-  ** Plugins to load before mounting the App
-  */
+	** Plugins to load before mounting the App
+	*/
 	plugins: [
-		{ src: '@/plugins/aos.js', ssr: false }
+		{ src: '@/plugins/aos.js', ssr: false },
+		{ src: '@/plugins/font-awesome.js' }
 	],
 
 	/*
-  ** Nuxt.js modules
-  */
+	** Nuxt.js modules
+	*/
 	modules: [
 		// Doc: https://axios.nuxtjs.org/usage
 		'@nuxtjs/axios',
 		'@nuxtjs/pwa',
 		'bootstrap-vue/nuxt',
-    '@nuxtjs/style-resources'
+		'@nuxtjs/style-resources'
 	],
-  styleResources: {
-        sass: [
-            '@assets/css/sass-variables.sass'
-        ]
-  },
+	styleResources: {
+				sass: [
+						'@assets/css/sass-variables.sass'
+				]
+	},
 	/*
-  ** Axios module configuration
-  */
+	** Axios module configuration
+	*/
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
 	},
-
+	router: {
+		scrollBehavior: function (to, from, savedPosition) {
+			return { x: 0, y: 0 }
+		}
+	},
 	/*
-  ** Build configuration
-  */
+	** Build configuration
+	*/
 	build: {
 		/*
-    ** You can extend webpack config here
-    */
+		** You can extend webpack config here
+		*/
 		extend(config, ctx) {
 			// Run ESLint on save
 			if (ctx.isDev && ctx.isClient) {

@@ -62,6 +62,8 @@ export default {
 <style lang="sass" scoped>
 .offer-container
 	padding: 1em
+	height: 100px
+	min-height: 300px
 .offer
 	border: 3px solid $white
 	height: 100%

@@ -15,6 +15,11 @@ export default {
 	components: {
 		Offers,
 		SiteHeader
+	},
+	head() {
+		return {
+			title: 'Gambit Studio - Oferta'
+		}
 	}
 }
 </script>
