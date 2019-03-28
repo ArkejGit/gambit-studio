@@ -31,7 +31,8 @@ module.exports = {
 	*/
 	plugins: [
 		{ src: '@/plugins/aos.js', ssr: false },
-		{ src: '@/plugins/font-awesome.js' }
+		{ src: '@/plugins/font-awesome.js' },
+		{ src: '@/plugins/axios.js' }
 	],
 
 	/*

@@ -25,7 +25,8 @@
 				<label class="accept1"><input v-model="checkedAccepts" @change="onCheckboxChange('accept1')" type="checkbox" name="accept1" value="accept1">Wyrażam zgodę na przetwarzanie przez Gambit Studio Agencję Interaktywną Robert Krawczyk z siedzibą w Wolsztynie podanych danych w celu przesłania wyceny usług, a następnie realizacji umowy o świadczenie usług. Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. <span class="red">*</span></label>
 				<label class="accept2"><input v-model="checkedAccepts" @change="onCheckboxChange('accept2')" type="checkbox" name="accept2" value="accept2">Wyrażam zgodę na przetwarzanie przez Gambit Studio Agencję Interaktywną Robert Krawczyk z siedzibą w Wolsztynie podanych danych w celach marketingowych własnych produktów i usług lub produktów i usług podmiotów trzecich oraz dla monitorowania ruchu na stronie internetowej. <span class="red">*</span></label>
 				<button @click.prevent="processForm">
-					Wyślij
+					<span v-if="processing" class="rotate"><font-awesome-icon icon="spinner" /></span>
+					<span v-else>Wyślij</span>
 				</button>
 			</form>
 			<div class="contact phone">
@@ -35,10 +36,21 @@
 				</div>
 			</div>
 		</div>
+	<b-modal ref="my-modal" hide-footer>
+		<div class="d-block text-center">
+			<font-awesome-icon v-if="success" class="modal-icon modal-icon-sucess" icon="check-circle" />
+			<font-awesome-icon v-else class="modal-icon modal-icon-failure" icon="exclamation-triangle" />
+			<h3 v-if="success">Dziękujemy za kontakt! Wkrótce się odezwiemy</h3>
+			<h3 v-else>Nie udało się wysłać wiadomości :( Spróbuj za jakiś czas</h3>
+		</div>
+		<b-button class="mt-3" variant="outline-danger" block @click="hideModal">Zamknij</b-button>
+	</b-modal>
 	</div>
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
 	data() {
 		return {
@@ -51,7 +63,7 @@ export default {
 			},
 			processing: false,
 			checkedAccepts: [],
-			failureMessage: ''
+			success: null
 		}
 	},
 	methods: {
@@ -91,14 +103,48 @@ export default {
 				})
 				document.querySelector(`.accept1`).scrollIntoView()
 			}	else {
-				console.log('brawo') // eslint-disable-line
+				this.processing = true
+				Vue.axios.post('https://gambitstudio.pl/mail.php', {
+					name: this.inputs.name,
+					email: this.inputs.email,
+					phone: this.inputs.phone,
+					subject: this.inputs.subject,
+					message: this.inputs.message
+				})
+					.then((res) => {
+						console.log(res) //eslint-disable-line
+						this.processing = false
+						this.success = true
+						this.inputs.name = ''
+						this.inputs.email = ''
+						this.inputs.phone = ''
+						this.inputs.subject = ''
+						this.inputs.message = ''
+						this.showModal()
+					})
+					.catch((err) => {
+						console.log(err) //eslint-disable-line
+						this.processing = false
+						this.success = false
+						this.showModal()
+					})
 			}
+		},
+		showModal() {
+			this.$refs['my-modal'].show()
+		},
+		hideModal() {
+			this.$refs['my-modal'].hide()
 		}
 	}
 }
 </script>
 
 <style lang="sass" scoped>
++keyframes(spin)
+	100%
+		transform: rotate(360deg)
+
 .contact
 	width: 25%
 	display: flex
@@ -154,22 +200,52 @@ form
 		border: 2px solid red
 	.red
 		color: red
+	button
+		margin: 1em 0 2em 0
+		text-transform: uppercase
+		border: none
+		border-radius: 2em
+		font-size: 20px
+		font-weight: 600
+		color: $white
+		padding: .5em 3em
+		text-decoration: none
+		background-color: $blue
+		outline: none
+		transition: .3s ease
+		&:hover
+			opacity: .8
 
 button
-	margin: 1em 0 2em 0
-	text-transform: uppercase
-	border: none
-	border-radius: 2em
-	font-size: 20px
-	font-weight: 600
-	color: $white
-	padding: .5em 3em
-	text-decoration: none
-	background-color: $blue
-	outline: none
-	transition: .3s ease
-	&:hover
-		opacity: .8
+		margin: 1em 0
+		text-transform: uppercase
+		border: none
+		border-radius: 2em
+		font-size: 20px
+		font-weight: 600
+		color: $white
+		padding: .5em 3em
+		background-color: $blue
+		outline: none
+		display: inline-block
+		width: 50%
+		transition: .3s ease
+		&:hover
+			background-color: $blue
+			opacity: .8
+
+.rotate
+	svg
+		animation: spin 1s linear infinite
+
+.modal-icon
+		width: 3em
+		height: 3em
+		margin: .5em 0
+.modal-icon-failure
+	color: $danger
+.modal-icon-success
+	color: $success
 
 h2
 	text-transform: uppercase

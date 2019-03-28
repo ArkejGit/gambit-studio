@@ -20,9 +20,11 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
     "aos": "^2.3.4",
+    "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.14",
     "cross-env": "^5.2.0",
-    "nuxt": "^2.4.0"
+    "nuxt": "^2.4.0",
+    "vue-axios": "^2.1.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

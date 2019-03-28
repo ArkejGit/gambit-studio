@@ -50,7 +50,7 @@ export default {
 				},
 				{
 					title: 'SEO/SEM',
-					description: '?????????????????/',
+					description: 'Stań się widoczny dla wyszukiwarek internetowych',
 					img: require(`@/assets/seo.svg`)
 				}
 			]
