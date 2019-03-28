@@ -31,8 +31,8 @@
 				<input v-model="inputs.phone" @change="onChange('phone')" type="tel" name="phone" title="phone" placeholder="telefon" autocomplete="tel-national" required>
 				<input v-model="inputs.subject" @change="onChange('subject')" type="text" name="subject" title="subect" placeholder="temat" required>
 				<textarea v-model="inputs.message" @change="onChange('message')" name="message" title="message" cols="30" rows="5" placeholder="treść" required></textarea>
-				<label class="accept1"><input v-model="checkedAccepts" @change="onCheckboxChange('accept1')" type="checkbox" name="accept1" value="accept1">Wyrażam zgodę na przetwarzanie przez Gambit Studio Agencję Interaktywną Robert Krawczyk z siedzibą w Wolsztynie podanych danych w celu przesłania wyceny usług, a następnie realizacji umowy o świadczenie usług. Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. <span class="red">*</span></label>
-				<label class="accept2"><input v-model="checkedAccepts" @change="onCheckboxChange('accept2')" type="checkbox" name="accept2" value="accept2">Wyrażam zgodę na przetwarzanie przez Gambit Studio Agencję Interaktywną Robert Krawczyk z siedzibą w Wolsztynie podanych danych w celach marketingowych własnych produktów i usług lub produktów i usług podmiotów trzecich oraz dla monitorowania ruchu na stronie internetowej. <span class="red">*</span></label>
+				<label class="accept1"><input v-model="accept1" @change="onCheckboxChange('accept1')" type="checkbox" name="accept1" value="accept1">Wyrażam zgodę na przetwarzanie przez Gambit Studio Agencję Interaktywną Robert Krawczyk z siedzibą w Wolsztynie podanych danych w celu przesłania wyceny usług, a następnie realizacji umowy o świadczenie usług. Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. <span class="red">*</span></label>
+				<label class="accept2"><input v-model="accept2" @change="onCheckboxChange('accept2')" type="checkbox" name="accept2" value="accept2">Wyrażam zgodę na przetwarzanie przez Gambit Studio Agencję Interaktywną Robert Krawczyk z siedzibą w Wolsztynie podanych danych w celach marketingowych własnych produktów i usług lub produktów i usług podmiotów trzecich oraz dla monitorowania ruchu na stronie internetowej. <span class="red">*</span></label>
 				<button @click.prevent="processForm">
 					<span v-if="processing" class="rotate"><font-awesome-icon icon="spinner" /></span>
 					<span v-else>Wyślij</span>
@@ -47,7 +47,7 @@
 		</div>
 	<b-modal ref="my-modal" hide-footer>
 		<div class="d-block text-center">
-			<font-awesome-icon v-if="success" class="modal-icon modal-icon-sucess" icon="check-circle" />
+			<font-awesome-icon v-if="success" class="modal-icon modal-icon-success" icon="check-circle" />
 			<font-awesome-icon v-else class="modal-icon modal-icon-failure" icon="exclamation-triangle" />
 			<h3 v-if="success">Dziękujemy za kontakt! Wkrótce się odezwiemy</h3>
 			<h3 v-else>Nie udało się wysłać wiadomości :( Spróbuj za jakiś czas</h3>
@@ -70,8 +70,9 @@ export default {
 				subject: '',
 				message: ''
 			},
+			accept1: false,
+			accept2: false,
 			processing: false,
-			checkedAccepts: [],
 			success: null
 		}
 	},
@@ -86,7 +87,8 @@ export default {
 		},
 		onCheckboxChange: function (name) {
 			const accept = document.querySelector(`.${name}`)
-			if (this.checkedAccepts.includes(name)) {
+			const checked = name === 'accept1' ? this.accept1 : this.accept2
+			if (checked) {
 				accept.classList.remove('red')
 			} else {
 				accept.classList.add('red')
@@ -114,12 +116,9 @@ export default {
 					invalids.map(input => input.classList.add('invalid'))
 					invalids[0].scrollIntoView()
 				}
-			} else if (this.checkedAccepts.length < 2) {
-				['accept1', 'accept2'].map((accept) => {
-					if (!this.checkedAccepts.includes(accept)) {
-						document.querySelector(`.${accept}`).classList.add('red')
-					}
-				})
+			} else if (this.accept1 !== true || this.accept2 !== true) {
+				if (this.accept1 !== true) document.querySelector('.accept1').classList.add('red')
+				if (this.accept2 !== true) document.querySelector('.accept2').classList.add('red')
 				document.querySelector(`.accept1`).scrollIntoView()
 			}	else {
 				this.processing = true
@@ -131,8 +130,7 @@ export default {
 						'email': this.inputs.email,
 						'phone': this.inputs.phone,
 						'subject': this.inputs.subject,
-						'message': this.inputs.message,
-						'test': 'test'
+						'message': this.inputs.message
 					}),
 					axiosConfig
 				)
@@ -145,6 +143,10 @@ export default {
 						this.inputs.phone = ''
 						this.inputs.subject = ''
 						this.inputs.message = ''
+						this.accept1 = false
+						this.accept2 = false
+						document.querySelector('.accept1').classList.remove('red')
+						document.querySelector('.accept2').classList.remove('red')
 						this.showModal()
 					})
 					.catch((err) => {
