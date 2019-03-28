@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html {{ HTML_ATTRS }}>
+  <head {{ HEAD_ATTRS }}>
+    {{ HEAD }}
+  </head>
+  <body {{ BODY_ATTRS }}>
+    {{ APP }}
+			<form
+				name="gambit-form"
+				method="post"
+				data-netlify="true"
+				data-netlify-honeypot="bot-field"
+				hidden
+			>
+				<input type="hidden" name="form-name" value="gambit-form" />
+				<input type="text" name="name">
+				<input type="email" name="email">
+				<input type="tel" name="phone">
+				<input type="text" name="subject">
+				<textarea name="message"></textarea>
+				<label class="accept1"><input type="checkbox" name="accept1"></label>
+				<label class="accept2"><input type="checkbox" name="accept2"></label>
+			</form>
+  </body>
+</html>

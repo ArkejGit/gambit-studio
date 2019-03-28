@@ -16,7 +16,16 @@
 				<font-awesome-icon icon="envelope-open-text" />
 				</div>
 			</div>
-			<form>
+			<form
+				name="gambit-form"
+				method="post"
+				data-netlify="true"
+				data-netlify-honeypot="bot-field"
+			>
+				<input type="hidden" name="form-name" value="gambit-form" />
+				<p class="hidden">
+					<label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+				</p>
 				<input v-model="inputs.name" @change="onChange('name')" type="text" name="name" title="name" placeholder="imię" autocomplete="name" required>
 				<input v-model="inputs.email" @change="onChange('email')" type="email" name="email" title="email" placeholder="e-mail" autocomplete="email" required>
 				<input v-model="inputs.phone" @change="onChange('phone')" type="tel" name="phone" title="phone" placeholder="telefon" autocomplete="tel-national" required>
@@ -83,7 +92,17 @@ export default {
 				accept.classList.add('red')
 			}
 		},
+		encode(data) {
+			return Object.keys(data)
+				.map(
+					key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+				)
+				.join('&')
+		},
 		processForm: function () {
+			const axiosConfig = {
+				header: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			}
 			const invalids = [...document.querySelectorAll('input')].filter(input => input.validity.valid === false)
 			if (invalids.length > 0 || this.inputs.message === '') {
 				if (this.inputs.message === '') {
@@ -104,13 +123,19 @@ export default {
 				document.querySelector(`.accept1`).scrollIntoView()
 			}	else {
 				this.processing = true
-				Vue.axios.post('https://gambitstudio.pl/mail.php', {
-					name: this.inputs.name,
-					email: this.inputs.email,
-					phone: this.inputs.phone,
-					subject: this.inputs.subject,
-					message: this.inputs.message
-				})
+				Vue.axios.post(
+					'/',
+					this.encode({
+						'form-name': 'gambit-form',
+						'name': this.inputs.name,
+						'email': this.inputs.email,
+						'phone': this.inputs.phone,
+						'subject': this.inputs.subject,
+						'message': this.inputs.message,
+						'test': 'test'
+					}),
+					axiosConfig
+				)
 					.then((res) => {
 						console.log(res) //eslint-disable-line
 						this.processing = false
@@ -215,6 +240,8 @@ form
 		transition: .3s ease
 		&:hover
 			opacity: .8
+	.hidden
+		display: none
 
 button
 		margin: 1em 0
