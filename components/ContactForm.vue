@@ -49,7 +49,7 @@
 		<div class="d-block text-center">
 			<font-awesome-icon v-if="success" class="modal-icon modal-icon-success" icon="check-circle" />
 			<font-awesome-icon v-else class="modal-icon modal-icon-failure" icon="exclamation-triangle" />
-			<h3 v-if="success">Dziękujemy za kontakt! Wkrótce się odezwiemy</h3>
+			<h3 v-if="success">Dziękujemy za kontakt {{ thankYouName }}! Wkrótce się odezwiemy</h3>
 			<h3 v-else>Nie udało się wysłać wiadomości :( Spróbuj za jakiś czas</h3>
 		</div>
 		<b-button class="mt-3" variant="outline-danger" block @click="hideModal">Zamknij</b-button>
@@ -70,6 +70,7 @@ export default {
 				subject: '',
 				message: ''
 			},
+			thankYouName: '',
 			accept1: false,
 			accept2: false,
 			processing: false,
@@ -135,7 +136,7 @@ export default {
 					axiosConfig
 				)
 					.then((res) => {
-						console.log(res) //eslint-disable-line
+						this.thankYouName = this.inputs.name
 						this.processing = false
 						this.success = true
 						this.inputs.name = ''
@@ -150,7 +151,7 @@ export default {
 						this.showModal()
 					})
 					.catch((err) => {
-						console.log(err) //eslint-disable-line
+						console.log(err) // eslint-disable-line
 						this.processing = false
 						this.success = false
 						this.showModal()
