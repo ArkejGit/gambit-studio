@@ -64,8 +64,8 @@ export default {
 			width: 60%
 		.realization-link
 			border: 2px solid $white
-			border-radius: 5px
-			padding: .3em
+			border-radius: 2em
+			padding: .5em 1em
 			color: $white
 			text-decoration: none
 			font-weight: 600

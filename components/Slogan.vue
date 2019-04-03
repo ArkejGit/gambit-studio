@@ -80,4 +80,5 @@ export default {
 		.slogan-button
 			font-size: 2.8vw
 			width: 50%
+			padding: .8em 0
 </style>

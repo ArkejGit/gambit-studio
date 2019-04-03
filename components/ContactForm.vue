@@ -247,22 +247,22 @@ form
 		display: none
 
 button
-		margin: 1em 0
-		text-transform: uppercase
-		border: none
-		border-radius: 2em
-		font-size: 20px
-		font-weight: 600
-		color: $white
-		padding: .5em 3em
+	margin: 1em 0
+	text-transform: uppercase
+	border: none
+	border-radius: 2em
+	font-size: 20px
+	font-weight: 600
+	color: $white
+	padding: .5em 3em
+	background-color: $blue
+	outline: none
+	display: inline-block
+	width: 50%
+	transition: .3s ease
+	&:hover
 		background-color: $blue
-		outline: none
-		display: inline-block
-		width: 50%
-		transition: .3s ease
-		&:hover
-			background-color: $blue
-			opacity: .8
+		opacity: .8
 
 .rotate
 	svg
@@ -301,6 +301,8 @@ h2
 			display: none
 		form
 			width: 80%
+			button
+				padding: .5em 0
 	h2
 		margin-bottom: 0
 	h3
