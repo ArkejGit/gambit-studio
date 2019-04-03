@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMobileAlt, faEnvelopeOpenText, faUsers, faChess, faSpinner, faExclamationTriangle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faMobileAlt, faEnvelopeOpenText, faUsers, faChess, faSpinner, faExclamationTriangle, faCheckCircle, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook } from '@fortawesome/fontawesome-free-brands'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -12,5 +12,6 @@ library.add(faChess)
 library.add(faSpinner)
 library.add(faExclamationTriangle)
 library.add(faCheckCircle)
+library.add(faCalendarAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
