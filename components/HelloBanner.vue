@@ -63,6 +63,7 @@
 		font-size: 3vw
 		font-weight: 700
 		margin: 0
+		white-space: nowrap
 
 @media only screen and (max-width: 768px)
 	.hello-banner-container

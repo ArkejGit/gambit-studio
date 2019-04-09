@@ -13,7 +13,7 @@ module.exports = {
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 			{ hid: 'description', name: 'description', content: 'Tworzymy strony internetowe, sklepy, aplikacje. Opracowujemy strategię i kreujemy Twoją markę. Poznaj GambIT' }
 		],
-		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }]
+		link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }]
 	},
 
 	/*
