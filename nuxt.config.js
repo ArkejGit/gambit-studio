@@ -3,9 +3,6 @@ const pkg = require('./package')
 module.exports = {
 	mode: 'universal',
 
-	/*
-	** Headers of the page
-	*/
 	head: {
 		title: 'Gambit Studio',
 		meta: [
@@ -16,28 +13,16 @@ module.exports = {
 		link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }]
 	},
 
-	/*
-	** Customize the progress-bar color
-	*/
 	loading: { color: '#fff' },
 
-	/*
-	** Global CSS
-	*/
 	css: ['@assets/css/main.sass'],
 
-	/*
-	** Plugins to load before mounting the App
-	*/
 	plugins: [
 		{ src: '@/plugins/aos.js', ssr: false },
 		{ src: '@/plugins/font-awesome.js' },
 		{ src: '@/plugins/axios.js' }
 	],
 
-	/*
-	** Nuxt.js modules
-	*/
 	modules: [
 		// Doc: https://axios.nuxtjs.org/usage
 		'@nuxtjs/axios',
@@ -50,9 +35,6 @@ module.exports = {
 						'@assets/css/sass-variables.sass'
 				]
 	},
-	/*
-	** Axios module configuration
-	*/
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
 	},
@@ -61,13 +43,19 @@ module.exports = {
 			return { x: 0, y: 0 }
 		}
 	},
-	/*
-	** Build configuration
-	*/
 	build: {
-		/*
-		** You can extend webpack config here
-		*/
+		optimization: {
+      splitChunks: {
+        chunks: 'async',
+      }
+    },
+		splitChunks: {
+      pages: false,
+      vendor: false,
+      commons: false,
+      runtime: false,
+      layouts: false
+    },
 		extend(config, ctx) {
 			// Run ESLint on save
 			if (ctx.isDev && ctx.isClient) {

@@ -19,13 +19,7 @@
 			<form
 				name="gambit-form"
 				method="post"
-				data-netlify="true"
-				data-netlify-honeypot="bot-field"
 			>
-				<input type="hidden" name="form-name" value="gambit-form" />
-				<p class="hidden">
-					<label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-				</p>
 				<input v-model="inputs.name" @change="onChange('name')" type="text" name="name" title="name" placeholder="imię" autocomplete="name" required>
 				<input v-model="inputs.email" @change="onChange('email')" type="email" name="email" title="email" placeholder="e-mail" autocomplete="email" required>
 				<input v-model="inputs.phone" @change="onChange('phone')" type="tel" name="phone" title="phone" placeholder="telefon" autocomplete="tel-national" required>
@@ -52,13 +46,12 @@
 			<h3 v-if="success">Dziękujemy za kontakt {{ thankYouName }}! Wkrótce się odezwiemy</h3>
 			<h3 v-else>Nie udało się wysłać wiadomości :( Spróbuj za jakiś czas</h3>
 		</div>
-		<b-button class="mt-3" variant="outline-danger" block @click="hideModal">Zamknij</b-button>
+		<b-button @click="hideModal" class="mt-3" variant="outline-danger">Zamknij</b-button>
 	</b-modal>
 	</div>
 </template>
 
 <script>
-import Vue from 'vue'
 
 export default {
 	data() {
@@ -78,7 +71,7 @@ export default {
 		}
 	},
 	methods: {
-		onChange: function (name) {
+		onChange(name) {
 			const input = name === 'message' ? document.querySelector(`textarea[name=message]`) : document.querySelector(`input[name=${name}]`)
 			if (input.validity.valid === false) {
 				input.classList.add('invalid')
@@ -86,7 +79,7 @@ export default {
 				input.classList.remove('invalid')
 			}
 		},
-		onCheckboxChange: function (name) {
+		onCheckboxChange(name) {
 			const accept = document.querySelector(`.${name}`)
 			const checked = name === 'accept1' ? this.accept1 : this.accept2
 			if (checked) {
@@ -95,17 +88,7 @@ export default {
 				accept.classList.add('red')
 			}
 		},
-		encode(data) {
-			return Object.keys(data)
-				.map(
-					key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-				)
-				.join('&')
-		},
-		processForm: function () {
-			const axiosConfig = {
-				header: { 'Content-Type': 'application/x-www-form-urlencoded' }
-			}
+		processForm() {
 			const invalids = [...document.querySelectorAll('input')].filter(input => input.validity.valid === false)
 			if (invalids.length > 0 || this.inputs.message === '') {
 				if (this.inputs.message === '') {
@@ -123,18 +106,8 @@ export default {
 				document.querySelector(`.accept1`).scrollIntoView()
 			}	else {
 				this.processing = true
-				Vue.axios.post(
-					'/',
-					this.encode({
-						'form-name': 'gambit-form',
-						'name': this.inputs.name,
-						'email': this.inputs.email,
-						'phone': this.inputs.phone,
-						'subject': this.inputs.subject,
-						'message': this.inputs.message
-					}),
-					axiosConfig
-				)
+				const data = { ...this.inputs }
+				this.$axios.$post('https://www.gambitstudio.pl/mail.php', data)
 					.then((res) => {
 						this.thankYouName = this.inputs.name
 						this.processing = false
